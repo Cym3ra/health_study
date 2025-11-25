@@ -1,4 +1,5 @@
 import numpy as np
+from sklearn.linear_model import LinearRegression
 
 class HealthAnalyzer:
     def __init__(self, dataframe):
@@ -23,3 +24,19 @@ class HealthAnalyzer:
         ci_lower, ci_higher = np.percentile(bootstrap_means, [2.5, 97.5])
 
         return ci_lower, ci_higher
+    
+    def linear_reg(self, x_col, y_col):
+        x = self.df[[x_col]].to_numpy()
+        y = self.df[[y_col]].to_numpy()
+
+        model = LinearRegression()
+        model.fit(x, y)
+
+        intercept_hat = float(model.intercept_)
+        slope_hat = float(model.coef_[0])
+
+        y_hat = model.predict(x)
+
+        r2 = model.score(x, y)
+
+        return intercept_hat, slope_hat, r2
