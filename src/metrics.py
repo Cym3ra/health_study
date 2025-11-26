@@ -1,6 +1,10 @@
 import pandas as pd, numpy as np
 
 def column_stats(df):
+    """
+    Returnerar Medelvärde, median, min och max för: 
+    age, weight, height, systolic_bp och cholesterol.
+    """
     chosen_columns = df[["age", "weight", "height", "systolic_bp", "cholesterol"]]
     statistics_of_columns = pd.DataFrame({"Medel": chosen_columns.mean(), "Median": chosen_columns.median(),
                                       "Min": chosen_columns.min(), "Max": chosen_columns.max()})
@@ -9,6 +13,12 @@ def column_stats(df):
 
 
 def hypo_test(df):
+    """
+    Boostrap hypotes test för att jämföra värdena för blodtryck mellan rökare och icke-rökare.
+    obs_diff: den observerade skillnadens medelvärde för blodtryck
+    p_boot: p_värdet, som representerar mängden skillnader som är mindre eller lika med noll
+    ci: 95% konfidensintervallet av bootstrap distributionen
+    """
     smokers = df[df['smoker']=='Yes']['systolic_bp']
     nonsmokers = df[df['smoker']=='No']['systolic_bp']
 

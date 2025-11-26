@@ -6,6 +6,11 @@ class HealthAnalyzer:
         self.df = dataframe
 
     def disease_stats(self):
+        """
+        Beräknar och visar medelvärdet av de som har sjukdomen
+        Gör en simulering och skriver ut medelvärdet av 1000 simuleringar
+        Skriver ut standardavvikelsen
+        """
         disease_amount = self.df["disease"].mean()
         print(f"Antal personer som har sjukdomen:{disease_amount:.2f}")
 
@@ -14,6 +19,9 @@ class HealthAnalyzer:
         print(f"Standardavvikelse: {np.std(simuleringar):.4f}")
 
     def bootstrap_method(self):
+        """
+        Kör bootstrap metoden för att ge 95% konfidensintervall
+        """
         data = self.df["systolic_bp"]
         num_samples = 10_000
 
@@ -26,6 +34,9 @@ class HealthAnalyzer:
         return ci_lower, ci_higher
     
     def linear_reg(self, x_col, y_col):
+        """
+        Enkel linjär regression 
+        """
         x = self.df[[x_col]].to_numpy()
         y = self.df[[y_col]].to_numpy()
 
