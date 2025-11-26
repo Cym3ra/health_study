@@ -56,8 +56,8 @@ class HealthVisualizer:
         fig, ax = plt.subplots(figsize=(8, 5))
         self.df.boxplot(column=column, by=by, ax=ax)
         ax.set_title(title)
-        ax.set_xlabel(xlabel if xlabel else x_col)
-        ax.set_ylabel(ylabel if ylabel else y_col)
+        ax.set_xlabel(xlabel if xlabel else by)
+        ax.set_ylabel(ylabel if ylabel else column)
         plt.suptitle("")
         plt.tight_layout()
 
